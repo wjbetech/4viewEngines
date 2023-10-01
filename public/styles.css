@@ -1,0 +1,113 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+}
+p, h1, h2, h3, a, ul, li {
+  text-decoration: none;
+  list-style: none;
+}
+li {
+  font-size: 18px;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 60px;
+  padding-bottom: 10px;
+  box-shadow: 0 5px 10px rgba(69, 69, 69, 0.5);
+  text-transform: uppercase;
+  border: none;
+  width: 100%;
+  letter-spacing: 2px;
+  padding: 20px 50px;
+  background-color: rgb(201, 201, 201);
+
+  & a {
+    color: inherit;
+  }
+
+  & h1 {
+    font-size: 3rem;
+  }
+
+  & ul {
+    display: flex;
+    gap: 30px;
+    align-items: end;
+  }
+}
+.content {
+  width: 80%;
+  margin: 25px auto;
+}
+.create-blog {
+  width: 50%;
+  max-width: 600px;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+
+  & .title-input {
+    width: 100%;
+  }
+
+  & input, textarea {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    border: 1px solid transparent;
+    border-left: 3px solid grey;
+  }
+
+  & label {
+    display: block;
+    margin-top: 24px;
+  }
+
+  & textarea {
+    height: 120px;
+  }
+
+  & input::placeholder, ::placeholder {
+    font-family: 'Inter', sans-serif;
+  }
+
+  & button {
+    width: 100%;
+    font-size: 1.25rem;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+    background-color: green;
+    color: white;
+    cursor: pointer;
+  }
+
+  & button:hover {
+    background-color: rgb(0, 98, 0);
+  }
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  margin: auto;
+  padding: 20px 0;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 0 -5px 10px #33333360;
+  background-color: rgb(201, 201, 201);
+}

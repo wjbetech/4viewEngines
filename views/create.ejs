@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+
+  <%- include('./partials/navbar.ejs') %>
+
+  <div class="create-blog">
+    <label for="new-blog-title">Blog Title:</label>
+    <div class="title-input">
+      <input type="text" name="new-blog-title" placeholder="blog title">
+    </div>
+
+    <label for="new-content-author">Author:</label>
+    <div class="title-input">
+      <input type="text" name="new-content-author" placeholder="Adam Smith">
+    </div>
+
+    <label for="new-blog-content">Write Blog:</label>
+    <div>
+      <textarea name="new-blog-content" id="new-blog-content" cols="30" rows="10" placeholder="write your blog here"></textarea>
+    </div>
+
+
+    <button>Submit</button>
+  </div>
+
+  <%- include('./partials/footer.ejs') %>
+
+</body>
+</html>
