@@ -65,32 +65,31 @@ app.get("/single-blog", (req, res) => {
 
 
 // ROUTING
-app.get("/", (req, res) => {
-  res.redirect("/blogs");
+app.get('/', (req, res) => {
+  res.redirect('/blogs');
 });
 
-app.get("/about", (req, res) => {
-  res.render("about", { title: "About" });
+app.get('/about', (req, res) => {
+  res.render('about', { title: 'About' });
 });
 
 // blog routes
-app.get("/blogs/create", (req, res) => {
-  res.render("create", { title: "Create Blog Post" });
-});
-
-app.get("/blogs", (req, res) => {
+app.get('/blogs', (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then(result => {
-      res.render("index", {
-        blogs: result,
-        title: "All blogs"
-      });
+      res.render('index', { title: "All blogs", blogs: result  });
     })
-    .catch(error => {
-      console.log(error);
+    .catch(err => {
+      console.log(err);
     });
 });
 
+app.get('/blogs/create', (req, res) => {
+  res.render('create', { title: 'Create a new blog' });
+});
+
+
+// 404 page
 app.use((req, res) => {
-  res.status(404).render("404", { title: "Error" })
+  res.status(404).render('404', { title: '404' });
 });
