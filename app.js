@@ -15,6 +15,7 @@ mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // middleware
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use((req, res, next) => {
   res.locals.path = req.path;
@@ -24,22 +25,26 @@ app.use((req, res, next) => {
 // register view engine & listen for reqs
 app.set("view engine", "ejs");
 
-// mongoose, mongoDB testing
-app.get("/add-blog", (req, res) => {
-  const blog = new Blog({
-    title: 'new blog',
-    author: 'michael smith',
-    content: 'about my new blog'
-  });
+// // mongoose, mongoDB testing
+// // DISABLE AFTER SETUP
+// app.get("/add-blog", (req, res) => {
 
-  blog.save()
-    .then(result => {
-      res.send(result);
-    })
-    .catch(error => {
-      console.log(error);
-    });
-});
+//   // define the blog to post
+//   const blog = new Blog({
+//     title: 'new blog',
+//     author: 'michael smith',
+//     content: 'about my new blog'
+//   });
+
+//   // save the blog
+//   blog.save()
+//     .then(result => {
+//       res.send(result);
+//     })
+//     .catch(error => {
+//       console.log(error);
+//     });
+// });
 
 // view all blogs
 app.get("/all-blogs", (req, res) => {
@@ -74,6 +79,10 @@ app.get('/about', (req, res) => {
 });
 
 // blog routes
+app.get('/blogs/create', (req, res) => {
+  res.render('create', { title: 'Create a new blog' });
+});
+
 app.get('/blogs', (req, res) => {
   Blog.find().sort({ createdAt: -1 })
     .then(result => {
@@ -84,9 +93,39 @@ app.get('/blogs', (req, res) => {
     });
 });
 
-app.get('/blogs/create', (req, res) => {
-  res.render('create', { title: 'Create a new blog' });
+app.post('/blogs', (req, res) => {
+  const blog = new Blog(req.body);
+  blog.save()
+  .then(result => {
+    res.redirect("/blogs");
+  })
+  .catch(error => {
+    console.log("ERROR!", error);
+  })
 });
+
+app.get("/blogs/:id", (req, res) => {
+  const blogId = req.params.id;
+  Blog.findById(blogId)
+    .then(result => {
+      res.render("details", { blog: result, title: "Blog Details" })
+    })
+    .catch(error => {
+      console.log("ERROR!", error)
+    })
+})
+
+app.delete("/blogs/:id", (req, res) => {
+  const blogId = req.params.id;
+  Blog.findByIdAndDelete(blogId)
+    .then(() => {
+      res.json({ redirect: "/blogs" })
+    })
+    .catch((error) => {
+      console.log("ERROR!", error)
+    })
+})
+
 
 
 // 404 page

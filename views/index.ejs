@@ -9,12 +9,15 @@
     <h1>Blogs</h1>
     <% if (blogs.length > 0) { %>
       <% blogs.forEach(b => { %>
-        <% console.log(b.author) %>
+      <a class="post-link" href="/blogs/<%= b._id %>">
         <div class="post">
-          <h3 class="post-title"><%= b.title %></h3>
-          <p>Written by: <%= b.author %></p>
+          <div class="top-elements">
+            <h3 class="post-title"><%= b.title %></h3>
+          </div>
+          <p class="post-author">Written by: <%= b.author %></p>
           <p class="post-content"><%= b.content %></p>
         </div>
+      </a>
       <% }) %>
     <% } else { %>
       <h3>There are no blogs to display yet!</h3>

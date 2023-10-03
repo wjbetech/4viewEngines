@@ -5,23 +5,32 @@
     <%- include('./partials/navbar.ejs') %>
 
     <div class="create-blog">
-      <label for="new-blog-title">Blog Title:</label>
-      <div class="title-input">
-        <input type="text" name="new-blog-title" placeholder="blog title">
-      </div>
 
-      <label for="new-content-author">Author:</label>
-      <div class="title-input">
-        <input type="text" name="new-content-author" placeholder="Adam Smith">
-      </div>
+      <form action="/blogs" method="POST">
 
-      <label for="new-blog-content">Write Blog:</label>
-      <div>
-        <textarea name="new-blog-content" id="new-blog-content" cols="30" rows="10" placeholder="write your blog here"></textarea>
-      </div>
+        <!-- new blog post title -->
+        <label for="title">Blog Title:</label>
+        <div class="title-input">
+          <input name="title" type="text" placeholder="blog title">
+        </div>
 
+        <!-- new blog post author -->
+        <label for="author">Author:</label>
+        <div class="title-input">
+          <input name="author" type="text" placeholder="Adam Smith">
+        </div>
 
-      <button>Submit</button>
+        <!-- new blog post content -->
+        <label for="content">Write Blog:</label>
+        <div>
+          <textarea name="content" id="content" cols="30" rows="10" placeholder="write your blog here"></textarea>
+        </div>
+
+        <!-- submit button -->
+        <button>Submit</button>
+
+      </form>
+
     </div>
 
     <%- include('./partials/footer.ejs') %>
